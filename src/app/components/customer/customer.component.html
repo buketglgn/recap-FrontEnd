@@ -1,0 +1,21 @@
+<div style="text-align:center"  aria-current="true"><h4>Müsteriler listeleniyor</h4></div>
+<table class="table">
+   
+    <thead>
+        <tr>
+            <th>Müsteri Id</th>
+            <th>müster Adı</th>
+            <th>Müsteri Email</th>
+            <th>Müsteri Şirket</th>
+           
+        
+        </tr>
+    </thead>
+    <tr *ngFor="let customer of customers">
+        <td>{{customer.userId}} </td>
+        <td>{{customer.userName}}</td>
+        <td>{{customer.email}}</td>
+        <td>{{customer.companyName}}</td>
+      
+    </tr>
+    </table>
