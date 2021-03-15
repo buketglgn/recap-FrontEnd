@@ -1,4 +1,4 @@
-<div style="text-align:center"  aria-current="true"><h4>Araçlar listeleniyor</h4></div>
+<!-- <div style="text-align:center"  aria-current="true"><h4>Araçlar listeleniyor</h4></div>
 <table class="table">
    
     <thead>
@@ -8,18 +8,39 @@
             <th>Renk</th>
             <th>Model Yılı</th>
             <th>Fiyat</th>
-            <th>Açıklama</th>
+            <th>Açıklama</th> 
+             
         
         </tr>
     </thead>
-    <tr *ngFor="let car of cars">
+    <tr *ngFor="let car of cars"  routerLink="/cars/car-detail/{{car.id}}" >
         <td>{{car.id}} </td>
         <td>{{car.brandName}}</td>
         <td>{{car.colorName}}</td>
         <td>{{car.modelYear}}</td>
         <td>{{car.dailyPrice}}</td>
         <td>{{car.description}}</td>
+        <td>Detaylar..</td>
         
 
     </tr>
-    </table>
+    </table> -->
+
+    <div class="row" >
+        <div *ngFor="let car of cars" class="card" style="width: 20rem;">
+          <img src="https://localhost:44398/uploads/{{car.imagePath}}" class="card-img-top" alt="...">
+          <div  class="card-body">
+            <h5 class="card-title">{{car.description}}</h5>
+          </div >
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Marka: {{car.brandName}}</li>
+            <li class="list-group-item">Renk: {{car.colorName}}</li>
+            <li class="list-group-item">Model Yılı: {{car.modelYear}}</li>
+            <li class="list-group-item">Fiyat: {{car.dailyPrice}} Türk Lirası</li>
+          </ul>
+          <div class="card-body">
+            <button routerLink="/cars/car-detail/{{car.id}}" type="button" class="btn btn-light">Detaylar</button>
+            <button type="button" class="btn btn-light">Kirala</button>
+          </div>
+        </div>
+      </div>

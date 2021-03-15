@@ -10,6 +10,10 @@ import { from } from 'rxjs';
 import { BrandComponent } from './components/brand/brand.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import { ColorComponent } from './components/color/color.component';
+import { CarDetailComponent } from './components/car-detail/car-detail.component';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -18,12 +22,15 @@ import { CustomerComponent } from './components/customer/customer.component';
     CarComponent,
     BrandComponent,
     RentalComponent,
-    CustomerComponent
+    CustomerComponent,
+    ColorComponent,
+    CarDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    // NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

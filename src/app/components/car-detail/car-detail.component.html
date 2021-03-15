@@ -1,0 +1,66 @@
+<div class="card-header text-center">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner  d-flex "
+         style="height: 50vh; min-height: 20rem; max-height: 30rem">
+          <div *ngFor="let image of carImages; index as i; first as firstImage"
+          class="carousel-item align-self-center"
+            [ngClass]="{ active: firstImage }"
+          style="height: 100%; width: 100%">
+         
+
+             <img
+          src="https://localhost:44398/uploads/{{image.imagePath}}"
+          class=""
+          style="height: 100%; width: 100%; object-fit: contain"
+          alt="imageUrl + image.imagePath"
+        />
+          </div>
+         
+          <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carImageSlide"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+    </div>
+    <div>------------ </div>
+    <div style="text-align:center"  aria-current="true" *ngIf="carDetails"><h4>
+        {{carDetails.brandName}}--{{carDetails.description}}
+    </h4></div>
+<table class="table">
+   
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Marka</th>
+            <th>Renk</th>
+            <th>Model Yılı</th>
+            <th>Fiyat</th>
+            <th>Açıklama</th> 
+ 
+        </tr>
+    </thead>
+    <tr *ngIf="carDetails" >
+        <td>{{carDetails.id}} </td>
+        <td>{{carDetails.brandName}}</td>
+        <td>{{carDetails.colorName}}</td>
+        <td>{{carDetails.modelYear}}</td>
+        <td>{{carDetails.dailyPrice}}</td>
+        <td>{{carDetails.description}}</td>
+        
+    </tr>
+    </table>
+    
+
+      
+    
+
