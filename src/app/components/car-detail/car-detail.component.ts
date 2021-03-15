@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
 import { CarDetailByIdService } from 'src/app/services/carDetailById.service';
-// import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { CarImagesByIdService } from 'src/app/services/carImagesById.service';
 
@@ -21,7 +21,7 @@ export class CarDetailComponent implements OnInit {
     private carDetailByIdService:CarDetailByIdService,
     private carImagesByIdService:CarImagesByIdService,
     private activatedRoute:ActivatedRoute,
-    // private config : NgbCarouselConfig
+    
     
   ) { }
 
@@ -46,8 +46,5 @@ export class CarDetailComponent implements OnInit {
       
     })
   }
-  // setCarouselConfigs(){
-  //   this.config.showNavigationArrows = true;
-  //   this.config.showNavigationIndicators = true;
-  // }
+  
 }
