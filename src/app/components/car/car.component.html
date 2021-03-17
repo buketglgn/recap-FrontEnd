@@ -1,33 +1,7 @@
-<!-- <div style="text-align:center"  aria-current="true"><h4>Araçlar listeleniyor</h4></div>
-<table class="table">
-   
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Marka</th>
-            <th>Renk</th>
-            <th>Model Yılı</th>
-            <th>Fiyat</th>
-            <th>Açıklama</th> 
-             
-        
-        </tr>
-    </thead>
-    <tr *ngFor="let car of cars"  routerLink="/cars/car-detail/{{car.id}}" >
-        <td>{{car.id}} </td>
-        <td>{{car.brandName}}</td>
-        <td>{{car.colorName}}</td>
-        <td>{{car.modelYear}}</td>
-        <td>{{car.dailyPrice}}</td>
-        <td>{{car.description}}</td>
-        <td>Detaylar..</td>
-        
 
-    </tr>
-    </table> -->
 
     <div class="row" >
-        <div *ngFor="let car of cars" class="card" style="width: 20rem;">
+        <div *ngFor="let car of cars" class="card" style="width: 15rem;">
           <img src="https://localhost:44398/uploads/{{car.imagePath}}" class="card-img-top" alt="...">
           <div  class="card-body">
             <h5 class="card-title">{{car.description}}</h5>
