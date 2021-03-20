@@ -1,22 +1,99 @@
-<div style="text-align:center"  aria-current="true"><h4>Rentals listeleniyor</h4></div>
-<table class="table">
-   
-    <thead>
-        <tr>
-            <th>Araç Bilgisi</th>
-            <th>Müsteri Adı</th>
-            <th>Şirket adı</th>
-            <th>Kiralanma Tarihi</th>
-            
-        
-        </tr>
-    </thead>
-    <tr *ngFor="let rental of rentals">
-        <td>{{rental.descripton}} </td>
-        <td>{{rental.userName}}</td> 
-        <td>{{rental.companyName}}</td>
-        <td>{{rental.rentDate}}</td>
-       
-    </tr>
-    </table>
 
+
+<div class="card-header text-center">
+    <strong>
+        {{carDetails.brandName}} - {{carDetails.description}}
+    </strong>
+</div>
+<div class="d-grid gap-2 mb-2" *ngIf="carDetails.rentalStatu == false">
+    <div class="alert alert-danger">Araç şuan kiralanamaz</div>
+</div>
+<div class="d-grid gap-2 mb-2" *ngIf="carDetails.rentalStatu  == true" >
+
+  
+    <div  class="card-body">
+        <h5 class="card-title">{{carDetails.brandName}}</h5>
+      </div >
+      <ul class="list-group list-group-flush" style="width: 250px;">
+       
+        <li class="list-group-item">Marka: {{carDetails.brandName}}</li>
+        <li class="list-group-item">Açıklama: {{carDetails.description}}</li>
+        <li class="list-group-item">Renk: {{carDetails.colorName}} </li>
+        <li class="list-group-item">Günlük Fiyat : {{carDetails.dailyPrice  | currency: '₺'}} </li>
+        
+      </ul>
+   
+   <!-- Button trigger modal -->
+   <div  >
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button> -->
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+      
+  <div class="form-group row mb-2" >
+    <label for="example-date-input" class="col-4 col-form-label"
+      >Başlangıç</label
+    >
+    <div class="col-8">
+      <input
+        class="form-control"
+        min="{{ getRentDate() }}"
+        value="{{ getRentDate() }}"
+        type="date"
+        [(ngModel)]="rentDate"
+      />
+    </div>
+  </div>
+  <div class="form-group row" >
+    <label for="example-date-input" class="col-4 col-form-label"
+      >Bitiş</label
+    >
+    <div class="col-8">
+      <input
+        class="form-control"
+        type="date"
+        min="{{ getReturnDate() }}"
+        value="{{ getReturnDate() }}"
+        [(ngModel)]="returnDate"
+      />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+      Kapat
+    </button>
+    <button data-bs-dismiss="modal" (click)="createRental()" type="button" class="btn btn-primary">
+      Kirala
+    </button>
+  </div>
+
+  <!-- <div class="alert alert-danger" calculatePrice()>Ödenecek Toplam Ücret:</div> -->
+
+</div>
+
+
+
+
+
+
+
+   

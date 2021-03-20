@@ -1,4 +1,6 @@
+<div class="card">
 <div class="card-header text-center">
+  <div class="card-body">
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner  d-flex "
          style="height: 50vh; min-height: 20rem; max-height: 30rem">
@@ -15,7 +17,7 @@
           alt="imageUrl + image.imagePath"
         />
           </div>
-         
+         </div>
           <button
           class="carousel-control-prev"
           type="button"
@@ -32,6 +34,7 @@
       </div>
 
     </div>
+</div>
     <div>------------ </div>
     <div style="text-align:center"  aria-current="true" *ngIf="carDetails"><h4>
         {{carDetails.brandName}}--{{carDetails.description}}
@@ -45,7 +48,9 @@
             <th>Renk</th>
             <th>Model Yılı</th>
             <th>Fiyat</th>
-            <th>Açıklama</th> 
+            <th>Açıklama</th>
+            <th>Kirala..</th>
+            
  
         </tr>
     </thead>
@@ -56,6 +61,8 @@
         <td>{{carDetails.modelYear}}</td>
         <td>{{carDetails.dailyPrice}}</td>
         <td>{{carDetails.description}}</td>
+        <td ><button routerLink="/cars/rental/{{carDetails.id}}"  type="button" class="btn btn-success">Kirala</button></td>
+      
         
     </tr>
     </table>

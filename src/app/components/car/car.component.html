@@ -1,7 +1,6 @@
-
-
-    <div class="row" >
-        <div *ngFor="let car of cars" class="card" style="width: 15rem;">
+<app-car-filter></app-car-filter>
+   <div class="row" >
+        <div *ngFor="let car of cars " class="card" style="width: 15rem;">
           <img src="https://localhost:44398/uploads/{{car.imagePath}}" class="card-img-top" alt="...">
           <div  class="card-body">
             <h5 class="card-title">{{car.description}}</h5>
@@ -14,7 +13,7 @@
           </ul>
           <div class="card-body">
             <button routerLink="/cars/car-detail/{{car.id}}" type="button" class="btn btn-light">Detaylar</button>
-            <!-- <button type="button" class="btn btn-light">Kirala</button> -->
+            <button routerLink="/cars/rental/{{car.id}}" type="button" class="btn btn-light">Kirala</button>
           </div>
         </div>
       </div>

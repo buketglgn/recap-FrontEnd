@@ -8,5 +8,7 @@ export interface Car{
     dailyPrice:number;
     description:string;
     imagePath:string;
+    rentalStatu:boolean;
+    
    
 }
