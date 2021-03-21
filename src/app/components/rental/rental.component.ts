@@ -78,12 +78,25 @@ export class RentalComponent implements OnInit {
       returnDate: ["", Validators.required]
     })
  }
-   add(){
+ add(){
+  if(this.rentAddForm.valid){
     let rentalModel= Object.assign({},this.rentAddForm.value)
     this.rentalService.add(rentalModel).subscribe(response=>{
       this.toastrService.success(response.message,"başarılı")
-   })
-  }
+    }  ,responseError=>{
+      if(responseError.error.Errors.length>0){  //Errors dedigimiz validationError lar
+        for (let i = 0; i < responseError.error.Errors.length; i++) {
+          this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"dogrulama hatası")
+        }
+          
+      }
+      
+    })
+    
+  }else{
+    this.toastrService.error("Formunuz Eksik","Dikkat")
+}  
+}
     
   getCars(){
     this.carService.getCars().subscribe(response=>{

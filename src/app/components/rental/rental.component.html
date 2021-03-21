@@ -2,7 +2,7 @@
 
 <div class="card-header text-center">
     <strong>
-        {{carDetails.brandName}} - {{carDetails.description}}
+        {{carDetails.brandName}} - {{carDetails.description}} 
     </strong>
 </div>
 <div class="d-grid gap-2 mb-2" *ngIf="carDetails.rentalStatu == false">
@@ -26,7 +26,7 @@
                   id="carId"
                   formControlName="carId"
                   class="form-control"
-                  [value]="carDetails.id"
+                  value="carDetails.id"
                   placeholder={{carDetails.id}}
                   >
 
@@ -36,8 +36,8 @@
                 <label for="carId">Müsteri</label>
                 <div class="form-group">
                   <div class="col-8">
-                    <select class="form-select" [(ngModel)]="customerId" formControlName="customerId">
-                      <option [value]="customer.userId"
+                    <select class="form-select" formControlName="customerId">
+                      <option value="customer.userId"
                         *ngFor="let customer of customers"
                       >
                         {{ customer.companyName }}
@@ -47,7 +47,6 @@
 
                 </div>
               </div>
-
               <div class="form-group row mb-2">
                 <label for="example-date-input" class="col-4 col-form-label"
                   >Başlangıç</label
@@ -58,7 +57,8 @@
                     min="{{ getRentDate() }}"
                     value="{{ getRentDate() }}"
                     type="date"
-                    [(ngModel)]="rentDate"
+                  
+                    formControlName="rentDate"
                   />
                 </div>
               </div>
@@ -72,7 +72,8 @@
                     type="date"
                     min="{{ getReturnDate() }}"
                     value="{{ getReturnDate() }}"
-                    [(ngModel)]="returnDate"
+                  
+                    formControlName="returnDate"
                   />
                 </div>
               </div>

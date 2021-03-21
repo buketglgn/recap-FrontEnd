@@ -16,6 +16,7 @@ import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { ColorFilterPipe } from './pipes/color-filter.pipe';
 import { CarFilterComponent } from './components/car-filter/car-filter.component';
 import {ToastrModule} from 'ngx-toastr'
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
 
 
 
@@ -40,6 +41,7 @@ import {ToastrModule} from 'ngx-toastr'
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
     })
