@@ -8,6 +8,7 @@ import { CarService } from 'src/app/services/car.service';
 import { CarDetailByIdService } from 'src/app/services/carDetailById.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { RentalService } from 'src/app/services/rental.service';
+import {FormGroup, FormBuilder, FormControl, Validator, Validators} from "@angular/forms"
 
 @Component({
   selector: 'app-rental',
@@ -28,12 +29,15 @@ export class RentalComponent implements OnInit {
   price:number;
   result:number;
 
+  rentAddForm: FormGroup;
+
   constructor(private rentalService:RentalService, private activatedRoute:ActivatedRoute,
     private carService:CarService,
     private carDetailByIdService:CarDetailByIdService,
     private customerService:CustomerService,
     private router:Router,
-    private toastr:ToastrService) { }
+    private toastrService:ToastrService,
+    private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
@@ -42,24 +46,13 @@ export class RentalComponent implements OnInit {
         
       }
          this.getRentals()
-         this.getCars();
+         this.getCars()
+         this.createRentalAddForm()
+         this.getCustomer()
     
   })}
-  calculatePrice(){
-    if(this.rentDate && this.returnDate){
-      let endDate = new Date(this.rentDate.toString())
-      let startDate = new Date(this.returnDate.toString())
-      let endDay = Number.parseInt(endDate.getDate().toString())
-      let endMonth = Number.parseInt(endDate.getMonth().toString())
-      let endYear = Number.parseInt(endDate.getFullYear().toString())
-      let startDay = Number.parseInt(startDate.getDate().toString())
-      let startMonth = Number.parseInt(startDate.getMonth().toString())
-      let startYear = Number.parseInt(startDate.getFullYear().toString())
-      this.result =  ((endDay - startDay) + ((endMonth - startMonth)*30) + ((endYear - startYear)*365) + 1) * this.carDetails.dailyPrice
-    }
-    return this.result;
-  }
   
+ 
   getCustomer(){
     this.customerService.getCustomers().subscribe(response => {
       this.customers = response.data;
@@ -68,7 +61,6 @@ export class RentalComponent implements OnInit {
   }
   getRentDate(){
     var today  = new Date();
-    //min="1980-01-01"
     today.setDate(today.getDate() + 1);
     return today.toISOString().slice(0,10)
   }
@@ -78,27 +70,27 @@ export class RentalComponent implements OnInit {
     return today.toISOString().slice(0,10)
   }
 
-  createRental(){
-    let MyRental:Rental = {
-      rentDate: this.rentDate,
-      returnDate: this.returnDate,
-      carId: this.carDetails.id,
-      customerId: parseInt(this.customerId.toString()),
-      rentalStatu: false,
-     
-    }
-    this.router.navigate(['/payment/', JSON.stringify(MyRental)]);
-    this.toastr.info("Ödeme sayfasına yönlendiriliyorsunuz...", "Ödeme İşlemleri");
-    
+  createRentalAddForm(){
+    this.rentAddForm = this.formBuilder.group({
+      carId:  ["", Validators.required],
+      customerId:  ["", Validators.required],
+      rentDate:  ["", Validators.required],
+      returnDate: ["", Validators.required]
+    })
+ }
+   add(){
+    let rentalModel= Object.assign({},this.rentAddForm.value)
+    this.rentalService.add(rentalModel).subscribe(response=>{
+      this.toastrService.success(response.message,"başarılı")
+   })
   }
+    
   getCars(){
     this.carService.getCars().subscribe(response=>{
       this.cars=response.data;
     })
   }
 
-
-  
   getRentals(){
     this.rentalService.getrentals().subscribe(response=>{
       this.rentals=response.data;
@@ -109,13 +101,21 @@ export class RentalComponent implements OnInit {
       this.carDetails=response.data[0];
     })
   }
-  // Addrental(rental:Rental){
-  //   this.rentalService.Addrental(rental).subscribe(response=>{
-    
-  //   })
+
+// calculatePrice(){
+  //   if(this.rentDate && this.returnDate){
+  //     let endDate = new Date(this.rentDate.toString())
+  //     let startDate = new Date(this.returnDate.toString())
+  //     let endDay = Number.parseInt(endDate.getDate().toString())
+  //     let endMonth = Number.parseInt(endDate.getMonth().toString())
+  //     let endYear = Number.parseInt(endDate.getFullYear().toString())
+  //     let startDay = Number.parseInt(startDate.getDate().toString())
+  //     let startMonth = Number.parseInt(startDate.getMonth().toString())
+  //     let startYear = Number.parseInt(startDate.getFullYear().toString())
+  //     this.result =  ((endDay - startDay) + ((endMonth - startMonth)*30) + ((endYear - startYear)*365) + 1) * this.carDetails.dailyPrice
+  //   }
+  //   return this.result;
   // }
-
-
 
   }
 

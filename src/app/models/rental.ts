@@ -1,8 +1,8 @@
 export interface Rental{
-    id?:Number;
+    // id?:Number;
     carId:Number;
     customerId:Number;
     rentDate:Date;
     returnDate?:Date;
-    rentalStatu:boolean;
+    // rentalStatu:boolean;
 }
