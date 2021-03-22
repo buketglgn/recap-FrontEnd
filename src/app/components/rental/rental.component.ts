@@ -23,7 +23,6 @@ export class RentalComponent implements OnInit {
   cars:Car[];
   carDetails:Car;
   customers:Customer[];
-  customerId:Number;
   rentDate:Date;
   returnDate:Date;
   price:number;
@@ -42,7 +41,7 @@ export class RentalComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
       if(params["id"]){
-        this.getCarsById(params["id"])
+       this.getCarsById(params["id"])
         
       }
          this.getRentals()
@@ -51,8 +50,6 @@ export class RentalComponent implements OnInit {
          this.getCustomer()
     
   })}
-  
- 
   getCustomer(){
     this.customerService.getCustomers().subscribe(response => {
       this.customers = response.data;
@@ -73,37 +70,41 @@ export class RentalComponent implements OnInit {
   createRentalAddForm(){
     this.rentAddForm = this.formBuilder.group({
       carId:  ["", Validators.required],
-      customerId:  ["", Validators.required],
+      customerId: ["", Validators.required],
       rentDate:  ["", Validators.required],
       returnDate: ["", Validators.required]
     })
  }
+
  add(){
+   this.rentAddForm.patchValue({
+     carId: this.carDetails.id
+   })
+  console.log(this.rentAddForm.get("carId")?.value)
   if(this.rentAddForm.valid){
     let rentalModel= Object.assign({},this.rentAddForm.value)
+    
     this.rentalService.add(rentalModel).subscribe(response=>{
       this.toastrService.success(response.message,"başarılı")
     }  ,responseError=>{
-      if(responseError.error.Errors.length>0){  //Errors dedigimiz validationError lar
-        for (let i = 0; i < responseError.error.Errors.length; i++) {
-          this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"dogrulama hatası")
-        }
+      // if(responseError.error.Errors.length>0){  //Errors dedigimiz validationError lar
+      //   for (let i = 0; i < responseError.error.Errors.length; i++) {
+      //     this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"dogrulama hatası")
+      //   }
           
-      }
-      
-    })
+      // }
+      console.log(responseError.error)
+     })
     
   }else{
     this.toastrService.error("Formunuz Eksik","Dikkat")
 }  
 }
-    
-  getCars(){
+   getCars(){
     this.carService.getCars().subscribe(response=>{
       this.cars=response.data;
     })
   }
-
   getRentals(){
     this.rentalService.getrentals().subscribe(response=>{
       this.rentals=response.data;
@@ -111,7 +112,9 @@ export class RentalComponent implements OnInit {
   }
   getCarsById(id:number){
     this.carDetailByIdService.getCarDetailById(id).subscribe(response=>{
+      
       this.carDetails=response.data[0];
+     
     })
   }
 

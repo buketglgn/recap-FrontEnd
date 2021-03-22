@@ -18,17 +18,17 @@
           <div class="card-body">
             <form [formGroup]="rentAddForm">
               <div class="mb-3">
-                <label for="carId">Araç Numarası</label>
+                <!-- <label for="carId">Araç Numarası</label> -->
                 <div class="form-group">
                   <input 
-                  type="text"
-                  readonly
-                  id="carId"
-                  formControlName="carId"
+
+                  type="hidden"
                   class="form-control"
-                  value="carDetails.id"
-                  placeholder={{carDetails.id}}
-                  >
+                  id="carId"
+                  formControlName="carId" 
+                 value="carDetails.id"
+                 
+                 >
 
                 </div>
               </div>
@@ -36,13 +36,17 @@
                 <label for="carId">Müsteri</label>
                 <div class="form-group">
                   <div class="col-8">
-                    <select class="form-select" formControlName="customerId">
-                      <option value="customer.userId"
+                    <select 
+                     class="form-select" formControlName="customerId">
+                     <option  selected disabled>Müsteriler</option>
+                      <option 
                         *ngFor="let customer of customers"
+                        [ngValue]="customer.userId"
                       >
                         {{ customer.companyName }}
                       </option>
                     </select>
+
                   </div>
 
                 </div>
@@ -57,7 +61,6 @@
                     min="{{ getRentDate() }}"
                     value="{{ getRentDate() }}"
                     type="date"
-                  
                     formControlName="rentDate"
                   />
                 </div>
