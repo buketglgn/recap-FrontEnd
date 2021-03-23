@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" >
 <div class="card-header text-center">
   <div class="card-body">
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -39,7 +39,7 @@
     <div style="text-align:center"  aria-current="true" *ngIf="carDetails"><h4>
         {{carDetails.brandName}}--{{carDetails.description}}
     </h4></div>
-<table class="table">
+<table class="table" >
    
     <thead>
         <tr>
@@ -61,8 +61,8 @@
         <td>{{carDetails.modelYear}}</td>
         <td>{{carDetails.dailyPrice}}</td>
         <td>{{carDetails.description}}</td>
-        <td ><button routerLink="/cars/rental/{{carDetails.id}}"  type="button" class="btn btn-success">Kirala</button></td>
-        <td ><button routerLink="/cars/update/{{carDetails.id}}"  type="button" class="btn btn-success">Update</button></td>
+        <td ><button routerLink="/cars/rental/{{carDetails.id}}"  type="button" class="btn btn-warning">Kirala</button></td>
+        <td ><button routerLink="/cars/update/{{carDetails.id}}"  type="button" class="btn btn-warning">Update</button></td>
       
         
     </tr>
