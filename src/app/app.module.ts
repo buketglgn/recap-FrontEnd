@@ -16,7 +16,11 @@ import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { ColorFilterPipe } from './pipes/color-filter.pipe';
 import { CarFilterComponent } from './components/car-filter/car-filter.component';
 import {ToastrModule} from 'ngx-toastr'
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { AddBrandComponent } from './components/add-brand/add-brand.component';
+import { AddColorComponent } from './components/add-color/add-color.component';
+import { AddCarComponent } from './components/add-car/add-car.component';
+import { UpdateCarComponent } from './components/update-car/update-car.component'
 
 
 
@@ -33,6 +37,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
     BrandFilterPipe,
     ColorFilterPipe,
     CarFilterComponent,
+    AddBrandComponent,
+    AddColorComponent,
+    AddCarComponent,
+    UpdateCarComponent,
     
   ],
   imports: [

@@ -1,14 +1,14 @@
 export interface Car{
-    id:number;
-    brandName:string;
+    id?:number;
+    brandName?:string;
     brandId:number;
     colorId:number;
-    colorName:string;
+    colorName?:string;
     modelYear:number;
     dailyPrice:number;
     description:string;
-    imagePath:string;
-    rentalStatu:boolean;
+    imagePath?:string;
+    rentalStatu?:boolean;
     
    
 }

@@ -2,7 +2,7 @@
 
 <div class="card-header text-center">
     <strong>
-        {{carDetails.brandName}} - {{carDetails.description}} 
+        {{carDetails.brandName}} - {{carDetails.description}}
     </strong>
 </div>
 <div class="d-grid gap-2 mb-2" *ngIf="carDetails.rentalStatu == false">
@@ -20,14 +20,14 @@
               <div class="mb-3">
                 <!-- <label for="carId">Araç Numarası</label> -->
                 <div class="form-group">
-                  <input 
-
+                  <input
                   type="hidden"
                   class="form-control"
                   id="carId"
-                  formControlName="carId" 
+                  formControlName="carId"
                  value="carDetails.id"
                  
+
                  >
 
                 </div>
@@ -36,10 +36,10 @@
                 <label for="carId">Müsteri</label>
                 <div class="form-group">
                   <div class="col-8">
-                    <select 
+                    <select
                      class="form-select" formControlName="customerId">
                      <option  selected disabled>Müsteriler</option>
-                      <option 
+                      <option
                         *ngFor="let customer of customers"
                         [ngValue]="customer.userId"
                       >
@@ -75,7 +75,7 @@
                     type="date"
                     min="{{ getReturnDate() }}"
                     value="{{ getReturnDate() }}"
-                  
+
                     formControlName="returnDate"
                   />
                 </div>
@@ -106,4 +106,3 @@
 
 
 
-   
