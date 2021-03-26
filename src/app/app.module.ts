@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { CarComponent } from './components/car/car.component';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { BrandComponent } from './components/brand/brand.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { CustomerComponent } from './components/customer/customer.component';
@@ -20,7 +20,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AddBrandComponent } from './components/add-brand/add-brand.component';
 import { AddColorComponent } from './components/add-color/add-color.component';
 import { AddCarComponent } from './components/add-car/add-car.component';
-import { UpdateCarComponent } from './components/update-car/update-car.component'
+import { UpdateCarComponent } from './components/update-car/update-car.component';
+import { LoginComponent } from './components/login/login.component'
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 
@@ -41,6 +43,7 @@ import { UpdateCarComponent } from './components/update-car/update-car.component
     AddColorComponent,
     AddCarComponent,
     UpdateCarComponent,
+    LoginComponent,
     
   ],
   imports: [
@@ -56,7 +59,11 @@ import { UpdateCarComponent } from './components/update-car/update-car.component
     
     
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
