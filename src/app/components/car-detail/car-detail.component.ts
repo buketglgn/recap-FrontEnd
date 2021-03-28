@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
 import { Rental } from 'src/app/models/rental';
+import { RentalDetail } from 'src/app/models/rentalDetail';
 import { CarDetailByIdService } from 'src/app/services/carDetailById.service';
 
 
@@ -19,7 +20,7 @@ export class CarDetailComponent implements OnInit {
 
   carDetails:Car;
   carImages:CarImage[]=[];
-  rentalsByCarId:Rental[];
+  rentalsByCarId:RentalDetail
   rentals:Rental[];
   
   constructor(
@@ -60,8 +61,8 @@ export class CarDetailComponent implements OnInit {
     })
   }
 
-  getRentalsByCarId(id:number){
-    this.rentalService.getRentalsByCarId(id).subscribe(response=>{
+  getRentalByCarId(id:number){
+    this.rentalService.getRentalByCarId(id).subscribe(response=>{
       this.rentalsByCarId=response.data;
     })
   }

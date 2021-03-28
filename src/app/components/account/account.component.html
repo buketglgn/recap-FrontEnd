@@ -1,0 +1,56 @@
+
+<div class="content">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Hesap Bilgilerini Güncelle-- {{authService.name}}</h5>
+          <div class="card-body">
+            <form [formGroup]="">
+              
+              <div class="form-group row mb-2">
+                <label for="example-date-input" class="col-4 col-form-label"
+                  >UserId</label
+                >
+                <div class="col-8">
+                  <input
+                    class="form-control"
+                    type="text"
+                    formControlName="Id"
+                    value={{authService.userId}}
+                    placeholder={{authService.userId}}
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="carId">Kullanıcı adı</label>
+                <div class="form-group">
+                  <input 
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  formControlName="name" 
+                  value={{authService.name}}
+                  placeholder={{authService.name}}
+                  >
+
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="carId">Email</label>
+                <div class="form-group">
+                  <input 
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  formControlName="email" 
+                  value={{authService.email}}
+                  placeholder={{authService.email}}
+                 >
+                </div>
+              </div> 
+ </form>
+ </div>
+ <div class="card-footer">
+  <button class="btn btn-fill btn-primary" >Güncelle</button>
+</div>

@@ -1,0 +1,84 @@
+<div class="card" *ngFor="let carItem of cartItems">
+    <h5 class="card-header text-center">Araç ve Kiralama Detayları</h5>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Marka</th>
+                    <th scope="col">Renk</th>
+                    <th scope="col">Yıl</th>
+                    <th scope="col">Açıklama</th>
+                    <th scope="col">Günlük</th>
+                    <th scope="col">Toplam Fiyat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let car of cars">
+                    <th scope="row">{{car.brandName}}</th>
+                    <td>{{car.colorName}}</td>
+                    <td>{{car.modelYear}}</td>
+                    <td>{{(car.description.length > 15)?(car.description | slice:0:6)+'..':(car.description)}}</td>
+                    <td>{{car.dailyPrice | currency:'₺'}}</td>
+                    <td style="color: red; font-weight: bold;">{{(calculatedRentPrice !== 0)? (calculatedRentPrice |
+                        currency:'₺'):("₺0.0 - Kullandıkça Öde") }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="card">
+            <h5 class="card-header">Kredi Kartı ile Ödeme</h5>
+            <div class="card-body">
+                <form class="row g-3">
+                    <div class="col-md-6">
+                        <label for="inputNameOnCard" class="form-label">Kart Üzerindeki İsim</label>
+                        <input type="text" class="form-control" id="inputNameOnCard">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputCardNumber" class="form-label">Kart Numarası</label>
+                        <input type="number"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="number" maxlength="16" class="form-control" id="inputCardNumber">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="selectMonth" class="form-label">Ay</label>
+                        <select id="selectMonth" class="form-select">
+                            <option selected>Ay Seçiniz...</option>
+                            <option *ngFor="let month of months" value="{{month}}">{{month}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="selectYear" class="form-label">Yıl</label>
+                        <select id="selectYear" class="form-select">
+                            <option selected>Yıl Seçiniz...</option>
+                            <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputCVV" class="form-label">CVV</label>
+                        <input
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="number" maxlength="3" class="form-control" id="inputCVV">
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck" disabled>
+                            <label class="form-check-label" for="gridCheck">
+                                Kart bilgilerimi hatırla
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success" type="button" (click)="postPayment(carItem)">Ödemeyi Gerçekleştir</button>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-warning" type="button" routerLink="/cars">İşlemi İptal Et</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

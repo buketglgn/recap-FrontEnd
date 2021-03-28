@@ -23,6 +23,17 @@ import { AddCarComponent } from './components/add-car/add-car.component';
 import { UpdateCarComponent } from './components/update-car/update-car.component';
 import { LoginComponent } from './components/login/login.component'
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { RegisterComponent } from './components/register/register.component';
+
+import { JwtModule } from '@auth0/angular-jwt';
+import { AccountComponent } from './components/account/account.component';
+import { RentacarComponent } from './components/rentacar/rentacar.component';
+import { PaymentComponent } from './components/payment/payment.component';
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
+
 
 
 
@@ -44,6 +55,10 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     AddCarComponent,
     UpdateCarComponent,
     LoginComponent,
+    RegisterComponent,
+    AccountComponent,
+    RentacarComponent,
+    PaymentComponent,
     
   ],
   imports: [
@@ -55,7 +70,13 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
-    })
+    }),
+    JwtModule.forRoot({
+      config:{
+        tokenGetter: tokenGetter,
+      }
+    }),
+    
     
     
   ],

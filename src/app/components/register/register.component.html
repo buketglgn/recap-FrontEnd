@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+
+   
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        window.alert = function(){};
+        var defaultCSS = document.getElementById('bootstrap-css');
+        function changeCSS(css){
+            if(css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="'+ css +'" type="text/css" />'); 
+            else $('head > link').filter(':first').replaceWith(defaultCSS); 
+        }
+        $( document ).ready(function() {
+          var iframe_height = parseInt($('html').height()); 
+          window.parent.postMessage( iframe_height, 'https://bootsnipp.com');
+        });
+    </script>
+</head>
+<body>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+<div class="container">
+
+<div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 400px;">
+ <div align="center"> <img  class="mb-4"  src="https://localhost:44398/uploads/rentacar.jpg" alt="" width="100" height="100"></div>
+	<h4 class="card-title mt-3 text-center">Kayıt Ol</h4>
+
+	
+	
+	<form [formGroup]="registerForm">
+	<div class="form-group input-group">
+		<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+		 </div>
+        <input formControlName="firstName"
+        type="text"
+         class="form-control"
+          id="floatingInput"
+          placeholder="Ad"
+        >
+    </div> <!-- form-group// -->
+    <div class="form-group input-group">
+		<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+		 </div>
+        <input formControlName="lastName"
+        type="text"
+         class="form-control"
+          id="floatingInput"
+          placeholder="Soyad"
+        >
+    </div> 
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+		 </div>
+        <input
+        formControlName="email"
+        type="email"
+         class="form-control"
+          id="floatingInput"
+          placeholder="Email"
+           >
+    </div> <!-- form-group// -->
+   
+   
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+        <input formControlName="password"
+        type="password"
+         class="form-control"
+          id="floatingInput"
+          placeholder="Şifre"
+           >
+    </div> <!-- form-group// -->
+                                      
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block" (click)="register()"> Kayıt Ol </button>
+    </div> <!-- form-group// -->      
+    <p class="text-center">Hesabın var mı? <a routerLink="/login">Giriş Yap</a> </p>                                                                 
+</form>
+</article>
+</div> <!-- card.// -->
+
+</div> 
+<!--container end.//-->
+
+<br><br>
+	<script type="text/javascript">
+		</script>
+</body>
+</html>
