@@ -9,6 +9,7 @@ import { TokenModel } from '../models/tokenModel';
 import {  JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from '@angular/router';
 import { LocalStorageService } from './local-storage.service';
+import { UserModel } from '../models/userModel';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class AuthService {
 
   apiUrl="https://localhost:44398/api/auth"
   name: string = "";
+  surname:string="";
   roles: any[] = [];
   token: any;
   isLoggedIn: boolean = false;
@@ -38,6 +40,11 @@ export class AuthService {
     return this.httpClient.post<SingleResponseModel<RegisterModel>>(newPath,registerModel)
   }
 
+  update(userModel:UserModel): Observable<SingleResponseModel<UserModel>> {
+    let newPath=this.apiUrl+"/update";
+    return this.httpClient.post<SingleResponseModel<UserModel>>(newPath,userModel)
+  }
+
   isAuthenticated(){
     if(this.localStorageService.getItem("token")){
       return true
@@ -52,6 +59,8 @@ export class AuthService {
     let decodedToken = this.jwtHelper.decodeToken(this.token);
     let name = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
     this.name = name.split(' ')[0];
+    let surname = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+    this.surname = name.split(' ')[1];
     this.roles = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
     this.userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
     this.email=decodedToken["email"];

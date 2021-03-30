@@ -1,11 +1,21 @@
 <ul  class="list-group">
     <li class="list-group-item" routerLink="cars"><h6> Tüm Renkler</h6></li>
-    <li (click)="setCurrentColor(color)"
-    routerLink="cars/colors/{{color.colorId}}"
-     [class]="getCurrentColorClass(color)"
-     *ngFor="let color of colors"> {{color.colorName}}</li> 
+    <div class="mb-3">
+        
+        <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText"
+         placeholder="Renk ara..">
+      </div>
+     
+    
  
   </ul>
+  <select class="form-select" size="3" aria-label="size 3 select example" >
+    <option   (click)="setCurrentColor(color)"
+    routerLink="cars/colors/{{color.colorId}}"
+     [class]="getCurrentColorClass(color)"
+     *ngFor="let color of colors | colorFilter:filterText" value="1">{{color.colorName}}</option>
+   
+  </select>
 
 
 

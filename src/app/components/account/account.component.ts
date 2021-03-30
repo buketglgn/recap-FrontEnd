@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+import {FormGroup,FormControl,Validators,FormBuilder} from "@angular/forms"
 
 @Component({
   selector: 'app-account',
@@ -9,14 +10,42 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AccountComponent implements OnInit {
 
-  constructor(public authService:AuthService,
+  updateForm:FormGroup;
+  constructor(
+    private formBuilder:FormBuilder,public authService:AuthService,
     private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     if(this.isAuthenticated()){
-      this.authService.userDetailFromToken();  
+      this.authService.userDetailFromToken(); 
+     this.createUpdateForm() 
     } 
   }
+  createUpdateForm(){
+    this.updateForm=this.formBuilder.group({
+      id:["",Validators.required],
+      firstName: ["",Validators.required],
+      lastName: ["",Validators.required],
+      email:["",Validators.required],
+      password:["",Validators.required]
+    })
+  }
+  update(){
+    if(this.updateForm.valid){
+      console.log(this.updateForm.value);
+
+      let updateModel=Object.assign({},this.updateForm.value)
+      this.authService.update(updateModel).subscribe(response=>{
+         this.toastrService.success("Güncelleme Başarılı")
+        
+      },responseError=>{
+        console.log(responseError)
+        this.toastrService.error(responseError.error);
+        
+      })
+    }
+  }
+
 
   isAuthenticated(){
     if(this.authService.isAuthenticated()){

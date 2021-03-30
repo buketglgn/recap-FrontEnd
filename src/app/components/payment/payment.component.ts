@@ -37,6 +37,7 @@ export class PaymentComponent implements OnInit {
     console.log(this.cartItems);
     this.getCarDetail(this.cartItems[0].rental.carId);
     this.createYearsArray();
+   
   }
 
   createYearsArray(){
@@ -50,7 +51,7 @@ export class PaymentComponent implements OnInit {
 getCarDetail(id: number) {
   this.carService.getCarDetailById(id).subscribe(response => {
     this.cars = response.data;
-  //  console.log(this.cars);
+    console.log(this.cars);
 
     if (this.cartItems[0].rental.returnDate != null) {
       var rentDate = new Date(this.cartItems[0].rental.rentDate);
@@ -91,7 +92,6 @@ postRent(cartItem: CartItem) {
   })
 }
 
-
 postPayment(cartItem: CartItem) {
   if (cartItem.rental.returnDate != null) {
     var rentDate = new Date(cartItem.rental.rentDate);
@@ -104,7 +104,7 @@ postPayment(cartItem: CartItem) {
   let payment: Payment = {
     carId: this.cartItems[0].rental.carId,
     userId: this.cartItems[0].rental.customerId,
-    totalAmount: this.cars[0].dailyPrice * calculatedDays
+    totalAmount: this.cars[0].dailyPrice * calculatedDays,
   }
   console.log(payment);
 

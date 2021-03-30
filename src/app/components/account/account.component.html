@@ -5,7 +5,7 @@
         <div class="card-header">
           <h5 class="title">Hesap Bilgilerini Güncelle-- {{authService.name}}</h5>
           <div class="card-body">
-            <form [formGroup]="">
+            <form [formGroup]="updateForm">
               
               <div class="form-group row mb-2">
                 <label for="example-date-input" class="col-4 col-form-label"
@@ -13,12 +13,13 @@
                 >
                 <div class="col-8">
                   <input
-                    class="form-control"
-                    type="text"
-                    formControlName="Id"
-                    value={{authService.userId}}
-                    placeholder={{authService.userId}}
-                  />
+                  type="number"
+                  class="form-control"
+                  id="id"
+                  formControlName="id"
+                 value="authService.userId"
+                
+                 >
                 </div>
               </div>
               <div class="mb-3">
@@ -28,9 +29,23 @@
                   type="text"
                   class="form-control"
                   id="name"
-                  formControlName="name" 
+                  formControlName="firstName"
                   value={{authService.name}}
-                  placeholder={{authService.name}}
+                 
+                  >
+
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="carId">Kullanıcı Soyadı</label>
+                <div class="form-group">
+                  <input 
+                  type="text"
+                  class="form-control"
+                  id="surname"
+                  formControlName="lastName"
+                  value={{authService.surname}}
+                  
                   >
 
                 </div>
@@ -43,14 +58,25 @@
                   type="text"
                   class="form-control"
                   id="email"
-                  formControlName="email" 
+                  formControlName="email"
                   value={{authService.email}}
-                  placeholder={{authService.email}}
+                  
                  >
+                </div>
+              </div> 
+              <div class="mb-3">
+                <label for="carId">Lütfen Şifrenizi Giriniz..</label>
+                <div class="form-group">
+                  <input 
+                  type="password"
+                  class="form-control"
+                  id="email"
+                  formControlName="password"
+                >
                 </div>
               </div> 
  </form>
  </div>
  <div class="card-footer">
-  <button class="btn btn-fill btn-primary" >Güncelle</button>
+  <button class="btn btn-fill btn-primary" (click)="update()" >Güncelle</button>
 </div>

@@ -37,6 +37,7 @@ export class AdminGuard implements CanActivate {
         this.toastrService.error("Önce Admin Olarak Giriş Yapmalısınız");
         return false;
       }
+      this.toastrService.error("Önce Admin Olarak Giriş Yapmalısınız")
       return false
   }
   
