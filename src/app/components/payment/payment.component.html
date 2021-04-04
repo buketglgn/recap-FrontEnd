@@ -19,64 +19,129 @@
                     <td>{{car.modelYear}}</td>
                     <td>{{(car.description.length > 15)?(car.description | slice:0:6)+'..':(car.description)}}</td>
                     <td>{{car.dailyPrice | currency:'₺'}}</td>
-                    <td style="color: red; font-weight: bold;">{{(calculatedRentPrice !== 0)? (calculatedRentPrice |
-                        currency:'₺'):("₺0.0 - Kullandıkça Öde") }}</td>
+                    <td style="color: red; font-weight: bold;">{{(calculatedRentPrice |
+                        currency:'₺')}}</td>
                 </tr>
             </tbody>
         </table>
-
+       
+        <div class="row" *ngIf="checkCreditCards()" class="alert alert-success">
+            kaytlı kartınız mevcut
+            <label for="example-date-input" class="col-lg-auto col-form-label">Kartlarınız</label>
+            <select class="form-select" size="3" aria-label="size 3 select example" >
+                <option *ngFor="let creditCard of creditCards" value="1" > 
+                    {{creditCard.name}}
+                </option>
+            </select>
+        </div>
+        <div class="row" class="alert alert-success">
+           Kart Eklemek isterseniz Formu doldurunuz...
+        </div>
+        
         <div class="card">
             <h5 class="card-header">Kredi Kartı ile Ödeme</h5>
+           
             <div class="card-body">
-                <form class="row g-3">
+                <form  [formGroup]="creditCardForm" class="row g-3" >
+                    <div class="col-md-6">
+                        <label for="UserId" class="form-label">UserId</label>
+                        <input
+                        type="number"
+                        readonly
+                        class="form-control"
+                        id="userId"
+                        formControlName="userId"
+                       value={{authService.userId}}>
+                    </div>
                     <div class="col-md-6">
                         <label for="inputNameOnCard" class="form-label">Kart Üzerindeki İsim</label>
-                        <input type="text" class="form-control" id="inputNameOnCard">
+                        <input type="text"
+                        id="name"
+                        formControlName="name"
+                         class="form-control">
                     </div>
                     <div class="col-md-6">
                         <label for="inputCardNumber" class="form-label">Kart Numarası</label>
-                        <input type="number"
-                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                            type="number" maxlength="16" class="form-control" id="inputCardNumber">
+                        <input type="text"
+                        id="creditCardNumber"
+                        formControlName="creditCardNumber"
+                             maxlength="16" class="form-control">
                     </div>
                     <div class="col-md-5">
                         <label for="selectMonth" class="form-label">Ay</label>
-                        <select id="selectMonth" class="form-select">
-                            <option selected>Ay Seçiniz...</option>
-                            <option *ngFor="let month of months" value="{{month}}">{{month}}</option>
-                        </select>
+                        <input type="number"
+                        id="month"
+                        formControlName="month"
+                             maxlength="2" class="form-control">
                     </div>
                     <div class="col-md-5">
                         <label for="selectYear" class="form-label">Yıl</label>
-                        <select id="selectYear" class="form-select">
-                            <option selected>Yıl Seçiniz...</option>
-                            <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
-                        </select>
+                        <input type="number"
+                        id="year"
+                        formControlName="year"
+                             maxlength="4" class="form-control">
                     </div>
                     <div class="col-md-2">
-                        <label for="inputCVV" class="form-label">CVV</label>
+                        <label for="inputCVV" class="form-label">CCV</label>
                         <input
-                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                            type="number" maxlength="3" class="form-control" id="inputCVV">
+                           
+                            type="text"
+                            id="inputCVV"
+                            formControlName="ccv" maxlength="3" class="form-control">
                     </div>
                     <div class="col-12">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck" disabled>
+                            <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="onay1">
                             <label class="form-check-label" for="gridCheck">
                                 Kart bilgilerimi hatırla
                             </label>
                         </div>
                     </div>
-                    <div class="col-9">
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-success" type="button" (click)="postPayment(carItem)">Ödemeyi Gerçekleştir</button>
-                        </div>
-                    </div>
                     <div class="col-3">
                         <div class="d-grid gap-2">
-                            <button class="btn btn-warning" type="button" routerLink="/cars">İşlemi İptal Et</button>
+                           
+                     <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+   Findex Puan Sorgula
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Findex Puanınız Bu Aracı Kiralamak İçin Yeterli Değil</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-footer">
+          <button routerLink="/cars" style="background-color: red;" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+                            
+
+  
+ 
                         </div>
                     </div>
+                    <div class="col-6">
+                        <div class="d-grid gap-2">
+                            
+                            <div ng-if="onay1" (click)="add()">
+                            <button class="btn btn-success" type="button"   (click)="postPayment(carItem)">Ödemeyi Gerçekleştir</button>
+                        </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-3" >
+                        <div class="d-grid gap-2">
+                            <button style="background-color: red;" class="btn btn-warning" type="button" routerLink="/cars">İşlemi İptal Et</button>
+                        </div>
+                    </div>
+                    
                 </form>
             </div>
         </div>

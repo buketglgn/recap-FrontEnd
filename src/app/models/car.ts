@@ -9,6 +9,7 @@ export interface Car{
     description:string;
     imagePath?:string;
     rentalStatu?:boolean;
+    minFindexScore?:number;
     
    
 }

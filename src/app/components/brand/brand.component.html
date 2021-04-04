@@ -7,8 +7,8 @@
       
  </div>
   </ul>
-  <select class="form-select" size="3" aria-label="size 3 select example" >
-    <option  (click)="setCurrentBrand(brand)"
+  <select class="form-select" size="5" aria-label="size 3 select example" style="background-color: yellowgreen;" >
+    <option style="background-color:  rgb(252, 251, 245);" (click)="setCurrentBrand(brand)"
     routerLink="cars/brands/{{brand.brandId}}"
      [class]="getCurrentBrandClass(brand)" 
       *ngFor="let brand of brands | brandFilter:filterText" value="1">{{brand.brandName}}</option>

@@ -16,25 +16,24 @@ export class RentalService {
   apiUrl="https://localhost:44398/api/";
   constructor(private httpClient:HttpClient) { }
 
-  getrentals():Observable<ListResponseModel<Rental>>
-  {
-    let newPath=this.apiUrl+"rentals/getRentalDetails";
-   return this.httpClient.get<ListResponseModel<Rental>>(newPath);
-  }
 
  add(rental: Rental) : Observable<ResponseModel>{
-  let newPath = this.apiUrl + "rentals/add";
+  let newPath = this.apiUrl+"rentals/add";
     return this.httpClient.post<ResponseModel>(newPath, rental);
   }
 
-   getRentals(): Observable<ListResponseModel<Rental>> {
-    let newPath = this.apiUrl + "rentals/getalldetail";
+   getrentals(): Observable<ListResponseModel<Rental>> {
+    let newPath = this.apiUrl+"rentals/getalldetail";
     return this.httpClient.get<ListResponseModel<Rental>>(newPath);
   }
 
   getRentalByCarId(carId:number) : Observable<SingleResponseModel<RentalDetail>>{
-    let newPath = this.apiUrl + "rentals/getbycarid?carId="+carId;
+    let newPath = this.apiUrl+"rentals/getrentaldetailbycarid?carId="+carId;
     return this.httpClient.get<SingleResponseModel<RentalDetail>>(newPath);
   }
 
+  getRentalByUserId(userId:number) : Observable<ListResponseModel<RentalDetail>>{
+    let newPath = this.apiUrl+"rentals/getrentaldetailbyuserid?userid="+userId;
+    return this.httpClient.get<ListResponseModel<RentalDetail>>(newPath);
+  }
 }

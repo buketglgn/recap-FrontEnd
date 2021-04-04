@@ -13,12 +13,13 @@
              <img
           src="https://localhost:44398/uploads/{{image.imagePath}}"
           class=""
-          style="height: 100%; width: 100%; object-fit: contain"
+          style="height: 400px;; width:700px; object-fit: contain"
           alt="imageUrl + image.imagePath"
         />
           </div>
          </div>
           <button
+         
           class="carousel-control-prev"
           type="button"
           data-bs-target="#carouselExampleControls"
@@ -27,7 +28,7 @@
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
+        <button  class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
@@ -47,7 +48,7 @@
             <th>Marka</th>
             <th>Renk</th>
             <th>Model Yılı</th>
-            <th>Fiyat</th>
+            <th>Günlük Fiyat</th>
             <th>Açıklama</th>
             <th>Kirala..</th>
             
@@ -59,11 +60,12 @@
         <td>{{carDetails.brandName}}</td>
         <td>{{carDetails.colorName}}</td>
         <td>{{carDetails.modelYear}}</td>
-        <td>{{carDetails.dailyPrice}}</td>
+        <td>{{carDetails.dailyPrice  | currency: '₺'}}</td>
         <td>{{carDetails.description}}</td>
-        <td ><button routerLink="/cars/rentacar/{{carDetails.id}}"  type="button" class="btn btn-warning">Kirala</button></td>
-        <td ><button routerLink="/cars/update/{{carDetails.id}}"  type="button" class="btn btn-warning">Update</button></td>
-      
+        <td ><button routerLink="/cars/rentacar/{{carDetails.id}}"  style="background-color: rgb(201, 241, 119);" class="btn btn-outline-success">Kirala</button></td>
+        <div *ngIf="checkAdminRole()">
+        <td ><button routerLink="/cars/update/{{carDetails.id}}" style="background-color: rgb(201, 241, 119);" class="btn btn-outline-success">Update</button></td>
+      </div>
         
     </tr>
     </table>

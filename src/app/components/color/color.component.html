@@ -9,8 +9,8 @@
     
  
   </ul>
-  <select class="form-select" size="3" aria-label="size 3 select example" >
-    <option   (click)="setCurrentColor(color)"
+  <select class="form-select" size="5" aria-label="size 3 select example" style="background-color: yellowgreen;">
+    <option  style="background-color:  rgb(252, 251, 245);" (click)="setCurrentColor(color)"
     routerLink="cars/colors/{{color.colorId}}"
      [class]="getCurrentColorClass(color)"
      *ngFor="let color of colors | colorFilter:filterText" value="1">{{color.colorName}}</option>

@@ -1,19 +1,19 @@
 <app-car-filter></app-car-filter>
    <div class="row" >
-        <div *ngFor="let car of cars " class="card" style="width: 15rem;">
-          <img src="https://localhost:44398/uploads/{{car.imagePath}}" class="card-img-top" alt="...">
-          <div  class="card-body">
+        <div *ngFor="let car of cars  | description:filterText" class="card" style="width: 20rem; padding: 20px; ">
+          <img src="https://localhost:44398/uploads/{{car.imagePath}}" style="width: 18rem; height: 13rem;"class="card-img-top" alt="...">
+          <div  class="card-body" >
             <h5 class="card-title">{{car.description}}</h5>
           </div >
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Id {{car.id}}</li>
-            <li class="list-group-item">Marka: {{car.brandName}}</li>
-            <li class="list-group-item">Renk: {{car.colorName}} </li>
-            <li class="list-group-item">Fiyat: {{car.dailyPrice}} TL</li>
+            <b><li class="list-group-item" >Id: {{car.id}}</li></b>
+            <b><li class="list-group-item">Marka: {{car.brandName}}</li></b>
+            <b><li class="list-group-item">Renk: {{car.colorName}} </li></b>
+            <b><li class="list-group-item">Fiyat: {{car.dailyPrice}} TL</li></b>
           </ul>
           <div class="card-body">
-            <button routerLink="/cars/car-detail/{{car.id}}" type="button" class="btn btn-light">Detaylar</button>
-            <button routerLink="/cars/rentacar/{{car.id}}" type="button" class="btn btn-light">Kirala</button>
+            <button  routerLink="/cars/car-detail/{{car.id}}" style="background-color: rgb(201, 241, 119);" class="btn btn-outline-success" >Detaylar..</button>
+            <button routerLink="/cars/rentacar/{{car.id}}" style="background-color: rgb(201, 241, 119);"   class="btn btn-outline-success">Kirala</button>
           </div>
         </div>
       </div>

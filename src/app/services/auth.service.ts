@@ -19,6 +19,7 @@ export class AuthService {
   apiUrl="https://localhost:44398/api/auth"
   name: string = "";
   surname:string="";
+  role:any;
   roles: any[] = [];
   token: any;
   isLoggedIn: boolean = false;
@@ -33,6 +34,8 @@ export class AuthService {
   login(loginModel:LoginModel): Observable<SingleResponseModel<TokenModel>> {
     let newPath=this.apiUrl+"/login";
     return this.httpClient.post<SingleResponseModel<TokenModel>>(newPath,loginModel)
+   
+
   }
 
   register(registerModel:RegisterModel): Observable<SingleResponseModel<RegisterModel>> {
@@ -62,12 +65,13 @@ export class AuthService {
     let surname = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
     this.surname = name.split(' ')[1];
     this.roles = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-    this.userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+    this.role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    this.userId =parseInt(decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']);
     this.email=decodedToken["email"];
   }
 
   roleCheck(roleList: string[]) {
-    if (this.roles !== undefined) {
+    if (this.roles !== null) {
       roleList.forEach(role => {
         if (this.roles.includes(role)) {
           return true;

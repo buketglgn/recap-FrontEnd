@@ -36,19 +36,20 @@ export class UpdateCarComponent implements OnInit {
     this.activatedRoute.params.subscribe(params=>{
       if(params["id"]){
        this.getCarsById(params["id"])
-
-      }
-    this.updateCarAddForm();
+       
+      
+}
+    this.createUpdateCarForm();
+    
+    
     this.getBrands();
     this.getColors();
     
-  })}
+  })
+  
+}
  update(){
-    this.carUpdateForm.patchValue({
-      id: this.carDetails.id,
-      
-     
-    })
+    
     if(this.carUpdateForm.valid){
      let carModel= Object.assign({},this.carUpdateForm.value)    
      this.carService.update(carModel).subscribe(response=>{
@@ -61,7 +62,7 @@ export class UpdateCarComponent implements OnInit {
      this.toastrService.error("Formunuz Eksik","Dikkat")
  } 
  }
- updateCarAddForm(){
+ createUpdateCarForm(){
     this.carUpdateForm = this.formBuilder.group({
       id:  ["", Validators.required],
       brandId:  ["", Validators.required],
@@ -89,5 +90,14 @@ getCarsById(id:number){
    
   })
 }
+varsayilan(){
+this.carUpdateForm.patchValue({
+  id:this.carDetails.id,
+  brandId: this.carDetails.brandId,
+  colorId: this.carDetails.colorId,
+  modelYear:this.carDetails.modelYear,
+  dailyPrice:this.carDetails.dailyPrice,
+  description:this.carDetails.description
 
+});}
 }

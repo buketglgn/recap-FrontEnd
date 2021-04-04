@@ -5,6 +5,7 @@ import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
 import { Rental } from 'src/app/models/rental';
 import { RentalDetail } from 'src/app/models/rentalDetail';
+import { AuthService } from 'src/app/services/auth.service';
 import { CarDetailByIdService } from 'src/app/services/carDetailById.service';
 
 
@@ -28,6 +29,7 @@ export class CarDetailComponent implements OnInit {
     private carImagesByIdService:CarImagesByIdService,
     private activatedRoute:ActivatedRoute,
     private rentalService:RentalService,
+    public authService:AuthService
     
     
   ) { }
@@ -37,10 +39,10 @@ export class CarDetailComponent implements OnInit {
       if(params["id"]){
         this.getCarsById(params["id"])
         this.getImagesById(params["id"])
-        // this.getRentalsByCarId(params["id"])
+        this.getRentalByCarId(params["id"])
         
       }
-      this.getRentals()
+     this.getRentals()
   })
 }
 
@@ -78,5 +80,13 @@ export class CarDetailComponent implements OnInit {
 
    })
   }
+  checkAdminRole(){
+    if(this.authService.role=="admin"){
+      return true
+    }
+    else{
+      return false
+    }
+   }
 
 }

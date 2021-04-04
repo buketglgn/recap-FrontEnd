@@ -6,15 +6,15 @@
           <div class="card-body">
             <form [formGroup]="carUpdateForm">
               <div class="mb-3">
-                <!-- <label for="carId">Araç Numarası</label> -->
+               <label for="carId">Araç Numarası</label> 
                 <div class="form-group">
                   <input
                   type="text"
                   class="form-control"
                   id="id"
                   formControlName="id"
-                 value="carDetails.id"
-                 placeholder={{carDetails.id}}
+                 value={{carDetails.id}}
+                
                  >
                 </div>
               </div>
@@ -64,10 +64,10 @@
                 <div class="col-8">
                   <input
                     class="form-control"
-                    type="date"
+                    type="number"
                     formControlName="modelYear"
-                    value="carDetails.modelYear"
-                    />
+                    value={{carDetails.modelYear}}
+                    >
                 </div>
               </div>
               <div class="mb-3">
@@ -78,7 +78,7 @@
                   class="form-control"
                   id="description"
                   formControlName="description" 
-                  placeholder={{carDetails.description}}
+                  value={{carDetails.description}}
                   >
 
                 </div>
@@ -92,13 +92,15 @@
                   class="form-control"
                   id="dailyPrice"
                   formControlName="dailyPrice" 
-                  value="carDetails.dailyPrice"
-                  placeholder={{carDetails.dailyPrice}}
+                  value={{carDetails.dailyPrice}}
+                  
                  >
                 </div>
               </div> 
  </form>
  </div>
  <div class="card-footer">
-  <button class="btn btn-fill btn-primary" (click)="update()">Ekle</button>
+  <button class="btn btn-fill btn-primary" (click)="varsayilan()">varsayılan</button>
+  
+  <button class="btn btn-fill btn-primary" (click)="update()">Güncelle</button>
 </div>

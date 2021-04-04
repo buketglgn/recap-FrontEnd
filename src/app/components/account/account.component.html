@@ -8,12 +8,12 @@
             <form [formGroup]="updateForm">
               
               <div class="form-group row mb-2">
-                <label for="example-date-input" class="col-4 col-form-label"
+                <!-- <label for="example-date-input" class="col-4 col-form-label"
                   >UserId</label
-                >
+                > -->
                 <div class="col-8">
                   <input
-                  type="number"
+                  type="hidden"
                   class="form-control"
                   id="id"
                   formControlName="id"
@@ -78,5 +78,7 @@
  </form>
  </div>
  <div class="card-footer">
+   
   <button class="btn btn-fill btn-primary" (click)="update()" >Güncelle</button>
+ 
 </div>

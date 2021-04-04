@@ -17,6 +17,7 @@ import { ColorService } from 'src/app/services/color.service';
 export class CarComponent implements OnInit {
 
   cars:Car[]=[];
+  filterText:string="";
   
 
   constructor(private carService:CarService,  private activatedRoute:ActivatedRoute,

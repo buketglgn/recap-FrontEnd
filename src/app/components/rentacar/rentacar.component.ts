@@ -1,14 +1,18 @@
 import { formatDate } from '@angular/common';
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car';
 import { Customer } from 'src/app/models/customer';
+import { Findex } from 'src/app/models/findex';
 import { Rental } from 'src/app/models/rental';
 import { RentalDetail } from 'src/app/models/rentalDetail';
+import { AuthService } from 'src/app/services/auth.service';
 import { CarService } from 'src/app/services/car.service';
 import { CarDetailByIdService } from 'src/app/services/carDetailById.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import { FindexService } from 'src/app/services/findex.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { RentalService } from 'src/app/services/rental.service';
 
@@ -18,9 +22,10 @@ import { RentalService } from 'src/app/services/rental.service';
   styleUrls: ['./rentacar.component.css']
 })
 export class RentacarComponent implements OnInit {
+  findexScore: Findex[] = []
   cars: Car[] = []
   carDetails:Car;
-  customers: Customer[];
+  customers: Customer;
   customerId: Number;
   rentDate: Date;
   returnDate: Date;
@@ -35,31 +40,54 @@ export class RentacarComponent implements OnInit {
     private paymentService: PaymentService,
     private router : Router,
     private customerService : CustomerService,
-    private toastrService : ToastrService) { }
+    private toastrService : ToastrService,
+    public authService:AuthService,
+    private findexService:FindexService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
       if(params["id"]){
        this.getCarsById(params["id"])
-       this.getCustomer();
+       
        this.getRentalByCarId(params["id"]);
-        
-      }
+    }
+     
+      this.getFindexScoreByUserId(this.authService.userId)
+      this.getCustomerByUserId(this.authService.userId);
+ 
+    })
+  
+    
+  }
+getFindexScoreByUserId(userId:number){
+  this.findexService.getFindexScoreByUserId(userId).subscribe(response=>{
+    this.findexScore=response.data 
+      })
+     }
 
-    })}
+checkFindex(){
+  if((this.cars[0]?.minFindexScore)<=(this.findexScore[0]?.findexScore)){
+    return true
+ }
+  else{
+    return false}
+ }    
+
 
   getCarsById(id:number){
     this.carDetailByIdService.getCarDetailById(id).subscribe(response=>{     
       this.cars=response.data;    
     })
 }
-getCustomer(){
-  this.customerService.getCustomers().subscribe(response => {
+getCustomerByUserId(userId:number){
+  this.customerService.getCustomersByUserId(userId).subscribe(response => {
+   // console.log(response.data)
     this.customers = response.data;
   })
 }
 
 getRentMinDate(){
+
   var today  = new Date();
   today.setDate(today.getDate() + 1);
   return today.toISOString().slice(0,10)
@@ -75,7 +103,7 @@ createRental(){
     rentDate: this.rentDate,
     returnDate: this.returnDate?this.returnDate:null,
     carId: this.cars[0].id,
-    customerId: parseInt(this.customerId.toString())
+    customerId: this.customers.userId
   }
   this.paymentService.addToCart(MyRental);
  // console.log(this.paymentService.listCart());
@@ -123,7 +151,7 @@ rentedBeforeCarCheck() {
 
 checkClick(){
   if (this.checkAvailability() == true) {
-    if (this.rentDate == null || this.customerId == null) {
+    if (this.rentDate == null ) {
       this.toastrService.warning("Başlangıç tarihi ve şirket seçimi zorunludur!", "Eksik Form");
     }else{
       if (this.returnDate == null || this.returnDate > this.rentDate) {

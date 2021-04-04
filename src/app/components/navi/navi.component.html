@@ -1,37 +1,65 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:honeydew; padding: 20px;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#" style= "text-decoration: lightsalmon; font-family:cursive; ">ReCap Project</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" routerLink="cars">Anasayfa</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>
+
+          
+          <div *ngIf="checkAdminRole()" class="dropdown" >
           <li class="nav-item dropdown">
            
-            <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
+            <button style="background-color: yellowgreen;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+              Admin Paneli
+          </button>
              
-               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">""""</a></li>
-              <li><a class="dropdown-item" href="#">""""""</a></li>
+               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" routerLink="cars/add">Araç Ekle</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+              <li><a class="dropdown-item" routerLink="cars/color/add">Renk Ekle</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" routerLink="cars/brand/add">Marka Ekle</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#"></a></li>
+            </ul> 
+          </div>
+          <div *ngIf="checkUserRole()" class="dropdown" >
+            <li class="nav-item dropdown">
+             
+              <button style="background-color: yellowgreen;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+                Kullanıcı Paneli
+            </button>
+               
+                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" routerLink="/account">Bilgilerimi Güncelle</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" routerLink="/findex">Findex Puanım</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" routerLink="/rented">Kiraladıklarım</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#"></a></li>
+              </ul> 
+            </div>
+            <div *ngIf="checkNotRole()">
+             
+            </div>
+         </ul>
+       
+        <!-- <form class="d-flex">
+          <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText"
+         placeholder="Açıklama ara..">
+          <button class="btn btn-outline-success" type="submit" >Search</button>
+        </form> -->
       </div>
     </div>
     <div *ngIf="!isAuthenticated()">
@@ -41,13 +69,43 @@
       </form>
     </div>
     <div *ngIf="isAuthenticated()" class="dropdown">
+      <form class="d-flex"> 
       <button style="background-color: yellowgreen;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-              data-bs-toggle="dropdown" aria-expanded="false"> {{authService.name}}</button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" routerLink="/account">Hesap Bilgileri</a></li>
-        <li><a (click)="logOut()" class="dropdown-item" routerLink="/cars">Çıkış Yap</a></li>
-      </ul>
+              data-bs-toggle="dropdown" aria-expanded="false"> {{authService.name}} {{authService.surname}}</button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+               <li><a class="dropdown-item" routerLink="/account"><b>Hesap Bilgileri</b></a></li>
+                
+               
+              </ul>
+             <!-- Button trigger modal -->
+<button  style="background-color: red; width: 100px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Çıkış Yap
+</button>
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Çıkış Yapmak İstediğinizden Emin Misiniz?</h5>
+        <button style="background-color: yellowgreen;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-footer">
+        <button style="background-color: yellowgreen;" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+        <button style="background-color:red;" (click)="logOut()" type="button" class="btn btn-primary" data-bs-dismiss="modal" >Çıkış Yap</button>
+      </div>
+
     </div>
+  </div>
+</div>
+
+</div>
+               
+     
+   
   
     
   </nav>
+ 

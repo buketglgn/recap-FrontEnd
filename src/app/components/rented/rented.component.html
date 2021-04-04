@@ -1,0 +1,26 @@
+<table  class="table" >
+    <thead>
+        <tr>
+            <th>Açıklama</th>
+            <th>Model</th>
+            <th>Marka</th>
+            <th>Şirket</th>
+            <th>Kiralanma Tarihi</th>
+            <th>Dönüs Tarihi</th>
+            <th></th>
+        
+        </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let rented of rented">
+        <td>{{rented.carDescription}}</td>
+        <td>{{rented.carModel}}</td>
+        <td>{{rented.carBrand}}</td>
+        <td>{{rented.companyName}}</td>
+        <td>{{rented.rentDate}}</td>
+        <td>{{rented.returnDate}}</td>
+       
+   
+    </tr> 
+</tbody>
+    </table>

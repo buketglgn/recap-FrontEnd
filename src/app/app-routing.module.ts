@@ -6,11 +6,12 @@ import { AddCarComponent } from './components/add-car/add-car.component';
 import { AddColorComponent } from './components/add-color/add-color.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { CarComponent } from './components/car/car.component';
+import { FindexComponent } from './components/findex/findex.component';
 import { LoginComponent } from './components/login/login.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RentacarComponent } from './components/rentacar/rentacar.component';
-import { RentalComponent } from './components/rental/rental.component';
+import { RentedComponent } from './components/rented/rented.component';
 import { UpdateCarComponent } from './components/update-car/update-car.component';
 import { AdminGuard } from './guards/admin.guard';
 import { LoginGuard } from './guards/login.guard';
@@ -30,9 +31,10 @@ const routes: Routes = [
   {path:"login", component:LoginComponent},
   {path:"register", component:RegisterComponent},
   {path:"account",component:AccountComponent},
-  {path:"payment", component:PaymentComponent}
+  {path:"payment", component:PaymentComponent},
+  {path:"findex", component:FindexComponent},
+  {path:"rented", component:RentedComponent}
   
-
 ];
 
 @NgModule({

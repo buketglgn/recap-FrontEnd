@@ -8,14 +8,13 @@ import { NaviComponent } from './components/navi/navi.component';
 import { CarComponent } from './components/car/car.component';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { BrandComponent } from './components/brand/brand.component';
-import { RentalComponent } from './components/rental/rental.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { ColorComponent } from './components/color/color.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { ColorFilterPipe } from './pipes/color-filter.pipe';
 import { CarFilterComponent } from './components/car-filter/car-filter.component';
-import {ToastrModule} from 'ngx-toastr'
+import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AddBrandComponent } from './components/add-brand/add-brand.component';
 import { AddColorComponent } from './components/add-color/add-color.component';
@@ -29,6 +28,9 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AccountComponent } from './components/account/account.component';
 import { RentacarComponent } from './components/rentacar/rentacar.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { FindexComponent } from './components/findex/findex.component';
+import { RentedComponent } from './components/rented/rented.component';
+import { DescriptionPipe } from './pipes/description.pipe';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -43,7 +45,6 @@ export function tokenGetter() {
     NaviComponent,
     CarComponent,
     BrandComponent,
-    RentalComponent,
     CustomerComponent,
     ColorComponent,
     CarDetailComponent,
@@ -59,6 +60,9 @@ export function tokenGetter() {
     AccountComponent,
     RentacarComponent,
     PaymentComponent,
+    FindexComponent,
+    RentedComponent,
+    DescriptionPipe,
     
   ],
   imports: [
