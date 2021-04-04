@@ -4,7 +4,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ==>> Some Pictures of My Car Rental Project
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 <img width="256" alt="ÖDEME-SONRASI-" src="https://user-images.githubusercontent.com/72138973/113512027-790f0980-956b-11eb-916b-20b183acd13c.png">
 <img width="947" alt="registerSayfası" src="https://user-images.githubusercontent.com/72138973/113512030-7ad8cd00-956b-11eb-8fc0-54b6cfedad68.png">
 <img width="960" alt="anasayfa(adminpaneli)" src="https://user-images.githubusercontent.com/72138973/113512032-7b716380-956b-11eb-8431-71e576308ef4.png">
