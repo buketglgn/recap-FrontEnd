@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
 
- ###==>> Some Pictures of My Car Rental Project
+ ### Some Pictures of My Car Rental Project 
 You can get information about what the project looks like via the images below.
 <p float="left">
 <img width="150" alt="ÖDEME-SONRASI-" src="https://user-images.githubusercontent.com/72138973/113512027-790f0980-956b-11eb-916b-20b183acd13c.png"/>
