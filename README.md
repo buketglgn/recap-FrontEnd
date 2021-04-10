@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
 
 ==>> Some Pictures of My Car Rental Project
-
+<p float="left">
 <img width="200" alt="ÖDEME-SONRASI-" src="https://user-images.githubusercontent.com/72138973/113512027-790f0980-956b-11eb-916b-20b183acd13c.png">
 <img width="200" alt="registerSayfası" src="https://user-images.githubusercontent.com/72138973/113512030-7ad8cd00-956b-11eb-8fc0-54b6cfedad68.png">
 <img width="200" alt="anasayfa(adminpaneli)" src="https://user-images.githubusercontent.com/72138973/113512032-7b716380-956b-11eb-8431-71e576308ef4.png">
@@ -20,4 +20,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 <img width="200" alt="loginYoknavbar" src="https://user-images.githubusercontent.com/72138973/113512053-9348e780-956b-11eb-8694-50a722dfa1a4.png">
 <img width="200" alt="ÖDEMESAYFASI" src="https://user-images.githubusercontent.com/72138973/113512058-98a63200-956b-11eb-826a-923b3db9c481.png">
 <img width="200" alt="ÖDEMESAYFASI2" src="https://user-images.githubusercontent.com/72138973/113512060-99d75f00-956b-11eb-8734-83a8ae822ef3.png">
-
+</p>
