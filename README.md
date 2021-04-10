@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ==>> Some Pictures of My Car Rental Project
 
-<img  alt="ÖDEME-SONRASI-" src="https://user-images.githubusercontent.com/72138973/113512027-790f0980-956b-11eb-916b-20b183acd13c.png">
+<img width="200" alt="ÖDEME-SONRASI-" src="https://user-images.githubusercontent.com/72138973/113512027-790f0980-956b-11eb-916b-20b183acd13c.png">
 <img width="200" alt="registerSayfası" src="https://user-images.githubusercontent.com/72138973/113512030-7ad8cd00-956b-11eb-8fc0-54b6cfedad68.png">
 <img width="200" alt="anasayfa(adminpaneli)" src="https://user-images.githubusercontent.com/72138973/113512032-7b716380-956b-11eb-8431-71e576308ef4.png">
 <img width="200" alt="anasayfa(kullanıcıPaneli)" src="https://user-images.githubusercontent.com/72138973/113512037-80361780-956b-11eb-8bfb-36eaa68f9c75.png">
