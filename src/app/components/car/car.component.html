@@ -1,7 +1,9 @@
 <app-car-filter></app-car-filter>
    <div class="row" >
         <div *ngFor="let car of cars  | description:filterText" class="card" style="width: 20rem; padding: 20px; ">
-          <img src="https://localhost:44398/uploads/{{car.imagePath}}" style="width: 18rem; height: 13rem;"class="card-img-top" alt="...">
+          <img *ngIf="car.imagePath==null"
+          src="https://localhost:44398/uploads/rentacar.jpg" style="width: 18rem; height: 13rem;"class="card-img-top" alt="...">
+          <img *ngIf="car.imagePath" src="https://localhost:44398/uploads/{{car.imagePath}}" style="width: 18rem; height: 13rem;"class="card-img-top" alt="...">
           <div  class="card-body" >
             <h5 class="card-title">{{car.description}}</h5>
           </div >

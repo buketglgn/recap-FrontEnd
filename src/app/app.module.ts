@@ -31,6 +31,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { FindexComponent } from './components/findex/findex.component';
 import { RentedComponent } from './components/rented/rented.component';
 import { DescriptionPipe } from './pipes/description.pipe';
+import { FooterComponent } from './components/footer/footer.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -63,6 +64,7 @@ export function tokenGetter() {
     FindexComponent,
     RentedComponent,
     DescriptionPipe,
+    FooterComponent,
     
   ],
   imports: [
