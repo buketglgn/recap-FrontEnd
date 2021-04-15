@@ -21,7 +21,6 @@ You can get information about what the project looks like via the images below.
 <img width="200" alt="loginYoknavbar" src="https://user-images.githubusercontent.com/72138973/113512053-9348e780-956b-11eb-8694-50a722dfa1a4.png">
 <img width="200" alt="ÖDEMESAYFASI" src="https://user-images.githubusercontent.com/72138973/113512058-98a63200-956b-11eb-826a-923b3db9c481.png">
 <img width="200" alt="ÖDEMESAYFASI2" src="https://user-images.githubusercontent.com/72138973/113512060-99d75f00-956b-11eb-8734-83a8ae822ef3.png">
-  <img width="956" alt="FOOTER" src="https://user-images.githubusercontent.com/72138973/114886863-9c11a700-9e10-11eb-9fa0-3fb4bb503747.png">
+<img width="956" alt="FOOTER" src="https://user-images.githubusercontent.com/72138973/114886863-9c11a700-9e10-11eb-9fa0-3fb4bb503747.png">
   
-
 </p>
