@@ -3,12 +3,11 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
  ### The Technologies Used are;
 <ul><li> Custom Form Control </li>
-  <li>
-    Custom Pipe</li>
-  <li>Custom Directive</li>
-  <li>QueryParams</li>
-  <li>Guards</li>
+  <li>Custom Pipe</li>
   <li>LocalStorage Service</li>
+  <li>Guards</li>
+  <li>Decode Token</li>
+  <li>Bootstrap</li>
   </ul>
 
  ### Some Pictures of My Car Rental Project 
